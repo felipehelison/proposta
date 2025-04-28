@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: aliance_db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: aliance
+      MYSQL_PASSWORD: aliance
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      DB_HOST: db
+      DB_USER: aliance
+      DB_PASS: aliance
+      DB_NAME: aliance_db
+      JWT_SECRET: aliance_secret_key
+      SMTP_USER: seuemail@gmail.com
+      SMTP_PASS: suasenhaemail
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

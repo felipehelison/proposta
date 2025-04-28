@@ -1,0 +1,45 @@
+/* ========= Tailwind layers ========= */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========= Reset adicional ========= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  background: theme('colors.neutral.100'); /* cinza claro */
+  color: theme('colors.neutral.800');
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========= Scrollbar minimal ========= */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+/* ========= Component helpers ========= */
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2 font-medium text-white transition hover:opacity-90 active:scale-95;
+}
+.input-base {
+  @apply w-full rounded-xl border border-neutral-300 bg-white/70 px-4 py-2 outline-primary focus:ring-2 focus:ring-primary/40;
+}
+.card-glass {
+  @apply rounded-2xl bg-white/60 p-6 shadow-2xl backdrop-blur-sm;
+}
